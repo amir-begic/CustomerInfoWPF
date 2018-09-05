@@ -21,7 +21,8 @@ namespace CustomerWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Data data;
+        private Data _data;
+        private int _currentCustomer;
 
         public MainWindow()
         {
@@ -30,9 +31,21 @@ namespace CustomerWPF
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            this.data = Data.Load();
-            DisplayCustomer(0);
+            this._data = Data.Load();
+            _currentCustomer = 0;
+            DisplayCustomer();
 
+        }
+
+        private void DisplayCustomer()
+        {
+            this.CustomerIdTextBox.Text = _data.Customers.CustomerList[_currentCustomer].CustomerID;
+            this.CompanyNameTextBox.Text = _data.Customers.CustomerList[_currentCustomer].CompanyName;
+            this.ContactNameTextBox.Text = _data.Customers.CustomerList[_currentCustomer].ContactName;
+            this.ContactTitleTextBox.Text = _data.Customers.CustomerList[_currentCustomer].ContactTitle;
+            this.PhoneTextBox.Text = _data.Customers.CustomerList[_currentCustomer].Phone;
+            this.FaxTextBox.Text = _data.Customers.CustomerList[_currentCustomer].Fax;
+            this.BirthdayDatePicker.SelectedDate = _data.Customers.CustomerList[_currentCustomer].Birthday;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -41,15 +54,28 @@ namespace CustomerWPF
             Application.Current.Shutdown();
         }
 
-        private void DisplayCustomer(int index)
+        private void NextCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            this.CustomerIdTextBox.Text = data.Customers.CustomerList[index].CustomerID;
-            this.CompanyNameTextBox.Text = data.Customers.CustomerList[index].CompanyName;
-            this.ContactNameTextBox.Text = data.Customers.CustomerList[index].ContactName;
-            this.ContactTitleTextBox.Text = data.Customers.CustomerList[index].ContactTitle;
-            this.PhoneTextBox.Text = data.Customers.CustomerList[index].Phone;
-            this.FaxTextBox.Text = data.Customers.CustomerList[index].Fax;
-            this.BirthdayDatePicker.SelectedDate = data.Customers.CustomerList[index].Birthday;
+            _currentCustomer = _currentCustomer + 1;
+            if (_currentCustomer > _data.Customers.CustomerList.Count - 1)
+            {
+                _currentCustomer = 0;
+            }
+
+            DisplayCustomer();
+
+        }
+
+        private void PreviousCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            _currentCustomer = _currentCustomer - 1;
+            if (_currentCustomer < 0)
+            {
+                _currentCustomer = _data.Customers.CustomerList.Count - 1;
+            }
+
+            DisplayCustomer();
+
         }
     }
 }

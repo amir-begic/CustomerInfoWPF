@@ -40,9 +40,9 @@
         <Label Name="BirthdayLabel" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Birthday:"></Label>
         <DatePicker Name="BirthdayDatePicker" Grid.Column="3" Grid.Row="6"></DatePicker>
 
-        <Button Name="PreviousCustomerButton" Grid.Column="0" Grid.Row="8" Content="&lt;"></Button>
-        <Button Name="NextCustomerButton" Grid.Column="1" Grid.Row="8" Content="&gt;"></Button>
-        <Button Name="CloseButton" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Content="Close" Click="CloseButton_Click"></Button>
+        <Button Name="PreviousCustomerButton" Grid.Column="0" Grid.Row="8" Content="&lt;" Click="PreviousCustomerButton_Click"/>
+        <Button Name="NextCustomerButton" Grid.Column="1" Grid.Row="8" Content="&gt;" Click="NextCustomerButton_Click"/>
+        <Button Name="CloseButton" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Content="Close" Click="CloseButton_Click"/>
 
 
     </Grid>
