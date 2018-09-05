@@ -39,41 +39,58 @@ namespace CustomerWPF
 
         private void DisplayCustomer()
         {
-            this.CustomerIdTextBox.Text = _data.Customers.CustomerList[_currentCustomer].CustomerID;
-            this.CompanyNameTextBox.Text = _data.Customers.CustomerList[_currentCustomer].CompanyName;
-            this.ContactNameTextBox.Text = _data.Customers.CustomerList[_currentCustomer].ContactName;
-            this.ContactTitleTextBox.Text = _data.Customers.CustomerList[_currentCustomer].ContactTitle;
-            this.PhoneTextBox.Text = _data.Customers.CustomerList[_currentCustomer].Phone;
-            this.FaxTextBox.Text = _data.Customers.CustomerList[_currentCustomer].Fax;
-            this.BirthdayDatePicker.SelectedDate = _data.Customers.CustomerList[_currentCustomer].Birthday;
+            var customer = _data.Customers.CustomerList[_currentCustomer];
+
+            this.CustomerIdTextBox.Text = customer.CustomerID;
+            this.CompanyNameTextBox.Text = customer.CompanyName;
+            this.ContactNameTextBox.Text = customer.ContactName;
+            this.ContactTitleTextBox.Text = customer.ContactTitle;
+            this.PhoneTextBox.Text = customer.Phone;
+            this.FaxTextBox.Text = customer.Fax;
+            this.BirthdayDatePicker.SelectedDate = customer.Birthday;
+        }
+
+        private void SaveCustomer()
+        {
+            var customer = _data.Customers.CustomerList[_currentCustomer];
+
+            customer.CustomerID = this.CustomerIdTextBox.Text;
+            customer.CompanyName = this.CompanyNameTextBox.Text;
+            customer.ContactName = this.ContactNameTextBox.Text;
+            customer.ContactTitle = this.ContactTitleTextBox.Text;
+            customer.Phone = this.PhoneTextBox.Text;
+            customer.Fax = this.FaxTextBox.Text;
+            customer.Birthday = this.BirthdayDatePicker.SelectedDate;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            SaveCustomer();
+            _data.Save();
             this.Close();
             Application.Current.Shutdown();
         }
 
         private void NextCustomerButton_Click(object sender, RoutedEventArgs e)
         {
+            SaveCustomer();
             _currentCustomer = _currentCustomer + 1;
             if (_currentCustomer > _data.Customers.CustomerList.Count - 1)
             {
                 _currentCustomer = 0;
             }
-
             DisplayCustomer();
 
         }
 
         private void PreviousCustomerButton_Click(object sender, RoutedEventArgs e)
         {
+            SaveCustomer();
             _currentCustomer = _currentCustomer - 1;
             if (_currentCustomer < 0)
             {
                 _currentCustomer = _data.Customers.CustomerList.Count - 1;
             }
-
             DisplayCustomer();
 
         }
