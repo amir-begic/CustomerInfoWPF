@@ -32,40 +32,18 @@ namespace CustomerWPF
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             this._data = Data.Load();
+            this.CustomerListBox.ItemsSource = _data.Customers.CustomerList;
             _currentCustomer = 0;
             DisplayCustomer();
-
         }
 
         private void DisplayCustomer()
         {
-            var customer = _data.Customers.CustomerList[_currentCustomer];
-
-            this.CustomerIdTextBox.Text = customer.CustomerID;
-            this.CompanyNameTextBox.Text = customer.CompanyName;
-            this.ContactNameTextBox.Text = customer.ContactName;
-            this.ContactTitleTextBox.Text = customer.ContactTitle;
-            this.PhoneTextBox.Text = customer.Phone;
-            this.FaxTextBox.Text = customer.Fax;
-            this.BirthdayDatePicker.SelectedDate = customer.Birthday;
-        }
-
-        private void SaveCustomer()
-        {
-            var customer = _data.Customers.CustomerList[_currentCustomer];
-
-            customer.CustomerID = this.CustomerIdTextBox.Text;
-            customer.CompanyName = this.CompanyNameTextBox.Text;
-            customer.ContactName = this.ContactNameTextBox.Text;
-            customer.ContactTitle = this.ContactTitleTextBox.Text;
-            customer.Phone = this.PhoneTextBox.Text;
-            customer.Fax = this.FaxTextBox.Text;
-            customer.Birthday = this.BirthdayDatePicker.SelectedDate;
+            this.DataContext = _data.Customers.CustomerList[_currentCustomer];
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveCustomer();
             _data.Save();
             this.Close();
             Application.Current.Shutdown();
@@ -73,26 +51,22 @@ namespace CustomerWPF
 
         private void NextCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveCustomer();
             _currentCustomer = _currentCustomer + 1;
             if (_currentCustomer > _data.Customers.CustomerList.Count - 1)
             {
                 _currentCustomer = 0;
             }
             DisplayCustomer();
-
         }
 
         private void PreviousCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveCustomer();
             _currentCustomer = _currentCustomer - 1;
             if (_currentCustomer < 0)
             {
                 _currentCustomer = _data.Customers.CustomerList.Count - 1;
             }
             DisplayCustomer();
-
         }
     }
 }
