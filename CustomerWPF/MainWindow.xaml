@@ -37,7 +37,24 @@
         <TextBox Name="FaxTextBox" Text="{Binding Fax}" Grid.Column="3" Grid.Row="5"></TextBox>
         <Label Name="BirthdayLabel" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Birthday:"></Label>
         <DatePicker Name="BirthdayDatePicker" Text="{Binding Birthday}" Grid.Column="3" Grid.Row="6"></DatePicker>
-        <ListBox Name="CustomerListBox" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" SelectionChanged="CustomerListBox_OnSelectionChanged"></ListBox>
+        <ListBox Name="CustomerListBox" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" SelectionChanged="CustomerListBox_OnSelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding CustomerID}" />
+                        <TextBlock Text="{Binding CompanyName}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ContactName}" />
+                            <TextBlock Text=" (" />
+                            <TextBlock Text="{Binding ContactTitle}" />
+                            <TextBlock Text=")" />
+                        </StackPanel>
+                        <TextBlock Text="{Binding Phone}" />
+                        <TextBlock Text="{Binding Birthday, StringFormat=d, ConverterCulture=de-CH}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Name="CloseButton" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Content="Close" Click="CloseButton_Click"/>
     </Grid>
 </Window>
