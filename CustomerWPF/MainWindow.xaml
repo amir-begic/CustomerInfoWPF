@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="550" Width="925"
         Loaded="OnLoad">
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -24,19 +24,19 @@
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Name="CustomerIdLabel" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="CustomerID:"></Label>
-        <TextBox Name="CustomerIdTextBox" Text="{Binding CustomerID}" Grid.Column="3" Grid.Row="0"></TextBox>
+        <TextBox Name="CustomerIdTextBox" Text="{Binding CustomerID, ValidatesOnNotifyDataErrors=True}" Grid.Column="3" Grid.Row="0"></TextBox>
         <Label Name="CompanyNameLabel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Content="Company Name:"></Label>
-        <TextBox Name="CompanyNameTextBox" Text="{Binding CompanyName}" Grid.Column="3" Grid.Row="1"></TextBox>
+        <TextBox Name="CompanyNameTextBox" Text="{Binding CompanyName, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="1"></TextBox>
         <Label Name="ContactNameLabel" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Content="Contact Name:"></Label>
-        <TextBox Name="ContactNameTextBox" Text="{Binding ContactName}" Grid.Column="3" Grid.Row="2"></TextBox>
+        <TextBox Name="ContactNameTextBox" Text="{Binding ContactName, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="2"></TextBox>
         <Label Name="ContactTitleLabel" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Content="Contact Title:"></Label>
-        <TextBox Name="ContactTitleTextBox" Text="{Binding ContactTitle}" Grid.Column="3" Grid.Row="3"></TextBox>
+        <TextBox Name="ContactTitleTextBox" Text="{Binding ContactTitle, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="3"></TextBox>
         <Label Name="PhoneLabel" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Content="Phone:"></Label>
-        <TextBox Name="PhoneTextBox" Text="{Binding Phone}" Grid.Column="3" Grid.Row="4"></TextBox>
+        <TextBox Name="PhoneTextBox" Text="{Binding Phone, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="4"></TextBox>
         <Label Name="FaxLabel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Content="Fax:"></Label>
-        <TextBox Name="FaxTextBox" Text="{Binding Fax}" Grid.Column="3" Grid.Row="5"></TextBox>
+        <TextBox Name="FaxTextBox" Text="{Binding Fax, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="5"></TextBox>
         <Label Name="BirthdayLabel" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Birthday:"></Label>
-        <DatePicker Name="BirthdayDatePicker" Text="{Binding Birthday}" Grid.Column="3" Grid.Row="6"></DatePicker>
+        <DatePicker Name="BirthdayDatePicker" SelectedDate="{Binding Birthday, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="6"></DatePicker>
         <ListBox Name="CustomerListBox" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" SelectionChanged="CustomerListBox_OnSelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
