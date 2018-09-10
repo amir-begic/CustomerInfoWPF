@@ -49,24 +49,13 @@ namespace CustomerWPF
             Application.Current.Shutdown();
         }
 
-        private void NextCustomerButton_Click(object sender, RoutedEventArgs e)
+        private void CustomerListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _currentCustomer = _currentCustomer + 1;
-            if (_currentCustomer > _data.Customers.CustomerList.Count - 1)
+            var listBox = sender as ListBox;
+            if (listBox != null)
             {
-                _currentCustomer = 0;
+                this.DataContext = listBox.SelectedItem;
             }
-            DisplayCustomer();
-        }
-
-        private void PreviousCustomerButton_Click(object sender, RoutedEventArgs e)
-        {
-            _currentCustomer = _currentCustomer - 1;
-            if (_currentCustomer < 0)
-            {
-                _currentCustomer = _data.Customers.CustomerList.Count - 1;
-            }
-            DisplayCustomer();
         }
     }
 }

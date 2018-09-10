@@ -9,8 +9,6 @@
         Loaded="OnLoad">
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25"></ColumnDefinition>
-            <ColumnDefinition Width="25"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -39,9 +37,7 @@
         <TextBox Name="FaxTextBox" Text="{Binding Fax}" Grid.Column="3" Grid.Row="5"></TextBox>
         <Label Name="BirthdayLabel" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Content="Birthday:"></Label>
         <DatePicker Name="BirthdayDatePicker" Text="{Binding Birthday}" Grid.Column="3" Grid.Row="6"></DatePicker>
-        <ListBox Name="CustomerListBox" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"></ListBox>
-        <Button Name="PreviousCustomerButton" Grid.Column="0" Grid.Row="8" Content="&lt;" Click="PreviousCustomerButton_Click"/>
-        <Button Name="NextCustomerButton" Grid.Column="1" Grid.Row="8" Content="&gt;" Click="NextCustomerButton_Click"/>
-        <Button Name="CloseButton" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Content="Close" Click="CloseButton_Click"/>
+        <ListBox Name="CustomerListBox" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" SelectionChanged="CustomerListBox_OnSelectionChanged"></ListBox>
+        <Button Name="CloseButton" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Content="Close" Click="CloseButton_Click"/>
     </Grid>
 </Window>
